@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Briefcase } from 'lucide-react';
+import job from '../../assets/job.webp'
 
 
 function Title() {
@@ -49,7 +50,7 @@ function Title() {
           <div className="relative">
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="./src/assets/job.webp" 
+                src={job}
                 alt="Professional workspace"
                 className="w-full h-[500px] object-cover"
               />
