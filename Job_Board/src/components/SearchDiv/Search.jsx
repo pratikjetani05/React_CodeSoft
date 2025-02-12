@@ -1,31 +1,57 @@
-
-
 import React from 'react';
-import { AiOutlineSearch} from 'react-icons/ai';
-
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const Search = ({ searchTerm, setSearchTerm, handleSearch }) => {
   return (
-    <div className="searchDiv grid  bg-gray-200 rounded-[10px] mt-10 p-[3rem]">
-      <form onSubmit={handleSearch} className="">
-        <div className="firstDiv w-full h-[95%] flex flex-wrap justify-between items-center rounded-[8px]  bg-white p-5 shadow-lg shadow-gray-400">
-          <div className="flex gap-5 items-end">
-            <AiOutlineSearch className="text-[25px] cursor-pointer" />
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-transparent text-blue-600 text-xl focus:outline-none"
-              placeholder="Search Job Here..."
-            />
-           
+    <div className="w-[90%] mx-auto mt-8 mb-4">
+      <form onSubmit={handleSearch}>
+        <div className="relative flex items-center bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          {/* Search Icon */}
+          <div className="absolute left-4 text-gray-400">
+            <AiOutlineSearch className="w-6 h-6" />
           </div>
-         
+
+          {/* Search Input */}
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full py-4 pl-14 pr-32 text-gray-700 bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-base placeholder:text-gray-400"
+            placeholder="Search for jobs, companies, or locations..."
+          />
+
+          {/* Search Button */}
           <button
             type="submit"
-            className="bg-blue-500 h-full p-5 px-10 rounded-[10px] text-white cursor-pointer hover:bg-blue-700"
+            className="absolute right-3 px-6 py-2.5 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-300 font-medium text-sm shadow-sm hover:shadow-md"
           >
             Search
+          </button>
+        </div>
+
+        {/* Optional: Search Suggestions */}
+        <div className="flex flex-wrap gap-2 mt-3 px-4">
+          <span className="text-sm text-gray-500">Popular:</span>
+          <button 
+            type="button"
+            onClick={() => setSearchTerm('Developer')}
+            className="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
+          >
+            Developer
+          </button>
+          <button 
+            type="button"
+            onClick={() => setSearchTerm('Designer')}
+            className="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
+          >
+            Designer
+          </button>
+          <button 
+            type="button"
+            onClick={() => setSearchTerm('Manager')}
+            className="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
+          >
+            Manager
           </button>
         </div>
       </form>
@@ -34,4 +60,3 @@ const Search = ({ searchTerm, setSearchTerm, handleSearch }) => {
 };
 
 export default Search;
-

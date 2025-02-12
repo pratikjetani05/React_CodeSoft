@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BiTimeFive } from 'react-icons/bi';
@@ -44,39 +42,49 @@ const Job = () => {
   );
 
   return (
-    <div id='job'>
+    <div id='job items-center justify-center'>
       <Text />
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} handleSearch={handleSearch} />
-      <div className="jobcontainer w-[90%] mx-auto flex gap-10 justify-center flex-wrap  items-center py-10">
+      <div className="jobcontainer w-[90%]  mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-10">
         {filteredJobs.map(({ id, image, title, time, location, desc, company }) => (
           <div
             key={id}
-            className="group group/item singleJob w-[40vh] h-[40vh] p-[20px] bg-white rounded-[10px] hover:bg-blue-600 shadow-lg shadow-gray-400/700 hover:shadow-2xl"
+            className="group singleJob w-[90%] h-[350px] bg-white rounded-[10px] p-5 hover:bg-blue-600 shadow-lg shadow-gray-400/700 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between"
           >
-            <span className="flex justify-between items-center gap-4">
-              <h1 className="text-[16px] mb-2 font-semibold text-black group-hover:text-white">
-                {title}
-              </h1>
-              <span className="flex items-center text-black gap-1 group-hover:text-white">
-                <BiTimeFive />
-                {time}
-              </span>
-            </span>
-            <h6 className="text-black group-hover:text-white">{location}</h6>
-            <p className="text-[13px] text-black pt-[20px] h-[12vh] border-t-[2px] mt-[20px] group-hover:text-white">
+            {/* Header Section */}
+            <div className="space-y-1">
+              <div className="flex justify-between items-center">
+                <h1 className="text-lg font-semibold text-black group-hover:text-white line-clamp-1">
+                  {title}
+                </h1>
+                <span className="flex items-center text-black gap-1 group-hover:text-white whitespace-nowrap">
+                  <BiTimeFive />
+                  {time}
+                </span>
+              </div>
+              <h6 className="text-black group-hover:text-white text-sm">{location}</h6>
+            </div>
+
+            {/* Description Section */}
+            <p className="text-sm text-black group-hover:text-white border-t border-gray-200 py-4 line-clamp-3">
               {desc}
             </p>
-            <div className="company flex items-center gap-2">
-              <img src={image} alt="company_logo" className="w-[20%]" />
-              <span className="text-[14px] py-[1rem] block group-hover:text-white">
-                {company}
-              </span>
+
+            {/* Company Section */}
+            <div className="space-y-4">
+              <div className="company flex items-center gap-3">
+                <img src={image} alt="company_logo" className="w-12 h-12 object-contain" />
+                <span className="text-sm font-medium group-hover:text-white">
+                  {company}
+                </span>
+              </div>
+
+              <Link to="/apply" className="block">
+                <button className="w-full py-3 px-4 rounded-lg border-2 text-sm font-semibold bg-transparent text-gray-700 group-hover:bg-white group-hover:text-gray-700 transition-colors duration-300">
+                  Apply Now
+                </button>
+              </Link>
             </div>
-           <Link to="/apply">
-           <button className="border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-gray-700 hover:bg-white group-hover/item:text-gray-700 group-hover:text-black">
-              Apply Now
-            </button>
-           </Link>
           </div>
         ))}
       </div>
